@@ -41,6 +41,9 @@ jobs:
           key: rails-yarn-v1-{{ checksum "yarn.lock" }}
           paths:
           - ~/.cache/yarn
+          
+      # セカンダリイメージとして指定したサービスは起動順序が保証されない
+      # 使用準備が整っていない可能性があるので、dockerizeコマンドでDBとTCPコネクションを確立
       - run:
           name: データベースの起動を待機
           command: |
